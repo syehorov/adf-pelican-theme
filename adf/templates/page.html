@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %}{{ page.title }}{%endblock%}
+
+{% block pageheader %}
+<div class="hp-header-inner">
+    <div class="page-header">
+        <div class="content-header">
+            <div id="title-block">
+            <h1>{{ page.title }}</h1>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+    <section class="article">
+    {% import 'translations.html' as translations with context %}
+    {{ translations.translations_for(page) }}
+
+    {{ page.content }}
+<h2><a href="{{ SITEURL }}/pages/gallery.html#{{ page.album }}">{{ page.album }}</a></h2>
+    <ul>
+<ul>
+    {% for image in page.galleryimages %}
+    <a href="#{{ image }}" title="Натисніть для збільшення">
+        <img src="{{ SITEURL }}/images/thumbnail_tall/{{page.album}}/{{ image }}" alt="Click to view large image" />
+    </a>
+    <a class="lightbox" href="#_" id="{{ image }}" title="Натисніть щоб закрити">
+        <img src="{{ SITEURL }}/images/gallery/{{page.album}}/{{ image }}" alt="Натисніть щоб закрити" />
+    </a>
+{% endfor %}
+    </ul>
+    </section>
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+
+{% block content_title %}
+{% endblock %}
+
+
+{% for article in articles_page.object_list|sort(attribute='sortorder') %}
+            <!-- prima pagina -->
+            <div class="main-article">
+                <div class="read-more">{{ article.locale_date}}</div>
+ 
+                <h2><a href="{{ SITEURL }}/{{ article.url }}" rel=Bookmark title="Permalink to {{ article.title | striptags }}">{{ article.title }}</a></h2>
+                <p>
+                {{ article.content }}
+                </p>
+
+            </div>
+{% endfor %}
+</ul>
+{% endblock content %}
+<!-- END CONTENT -->
